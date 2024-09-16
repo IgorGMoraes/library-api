@@ -51,8 +51,15 @@ Foi implementado um sistema simples de controle de acesso baseado em roles, com 
 
 ### Fluxo de Implementação
 
-1. **Criação da API**: Foi construída uma API REST usando Spring Boot. Os endpoints principais permitem listar livros (/book), buscar por identificador (/book/{id}) buscar por gênero (/book/genre/{genre}) e autor (/book/author/{author}), e adicionar notas aos livros (/book/{id}/rate?rate={rate}) (restrito ao admin), listar os livros acessados recentemente (/recent), para esse último foi usado armazenamento dos dados na sessão.
-   
+1. **Criação da API**:
+-   Endpoints principais:
+    -   Listar livros: `/book` com paginação de tamanho 10 por padrão.
+    -   Buscar livro por identificador: `/book/{id}`.
+    -   Buscar livros por gênero: `/book/genre/{genre}`.
+    -   Buscar livros por autor: `/book/author/{author}`.
+    -   Adicionar notas aos livros (restrito ao admin): `/book/{id}/rate?rate={rate}`.
+    -   Listar os livros acessados recentemente: `/book/recent` (com armazenamento dos dados na sessão).
+
 2. **Banco de Dados**: A estrutura do banco de dados foi desenvolvida com PostgreSQL, aproveitando suas capacidades de modelagem relacional, principalmente devido à constância da estrutura de um livro. Cada livro está relacionado a um autor e a um gênero, permitindo consultas eficientes.
 
 3. **Segurança**: Após toda a implemetação funcional da API, foi adicionada a camada de securança com autenticaçÃo e autorização dos endpoints baseados em roles (USER e ADMIN).
@@ -74,9 +81,9 @@ Foi implementado um sistema simples de controle de acesso baseado em roles, com 
 
 ### Desafios Encontrados
 - A escolha entre PostgreSQL e MongoDB apresentou uma reflexão sobre as necessidades atuais da aplicação versus o planejamento para crescimento futuro.
-- Trabalhr com cahe, por algum motivo um endpoint ficou intável ao cachear os resultados, provavelmente foi alguma anotação ou configuração que não foi feita corretamente
-- Após subir a aplicação no docker os endpoits não ficaram mais acessáveis, mesmo fazendo o login corretamente dos usuários. Também pode ser alguma configuração errada, talvez relacionada ao CORS.
-- Desde a última vez que implementei autorização e autenticação com Spting Seurity, algumas coisas mudaram no framework e não pode ser feito da mesma maneira, mas obtive sucesso depois de me atualizar, buscando a documentação e tutoriais para pode implementar.
+- Trabalhr com cache, por algum motivo o endpoint de retornar um livro por ID havia ficado com erro serialização e a anotação `@Cacheable` ficou sem a `key = "#id"`, após algumas pesquisas e investigação no código o problema foi resolvido 
+- Após subir a aplicação no docker os endpoints não ficaram mais acessáveis, mesmo fazendo o login corretamente dos usuários. Também pode ser alguma configuração errada, talvez relacionada ao CORS.
+- Desde a última vez que implementei autorização e autenticação com Spting Seurity, algumas coisas mudaram no framework e não pode ser feito da mesma maneira, mas obtive sucesso depois de me atualizar, buscando a documentação e tutoriais para poder implementar a camada de segurança.
 
 ## Inicializar a aplicação
 
