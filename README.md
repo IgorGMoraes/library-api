@@ -70,6 +70,7 @@ Foi implementado um sistema simples de controle de acesso baseado em roles, com 
 - A escolha entre PostgreSQL e MongoDB apresentou uma reflexão sobre as necessidades atuais da aplicação versus o planejamento para crescimento futuro.
 - Trabalhr com cahe, por algum motivo um endpoint ficou intável ao cachear os resultados, provavelmente foi alguma anotação ou configuração que não foi feita corretamente
 - Após subir a aplicação no docker os endpoits não ficaram mais acessáveis, mesmo fazendo o login corretamente dos usuários. Também pode ser alguma configuração errada, talvez relacionada ao CORS.
+- Desde a última vez que implementei autorização e autenticação com Spting Seurity, algumas coisas mudaram no framework e não pode ser feito da mesma maneira, mas obtive sucesso depois de me atualizar, buscando a documentação e tutoriais para pode implementar.
 
 ## Inicializar a aplicação
 
