@@ -1,0 +1,29 @@
+x-database-variables: &database-variables
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/library
+  SPRING_DATASOURCE_USERNAME: admin
+  SPRING_DATASOURCE_PASSWORD: lib123
+  REDIS_URL: redis://redis:6379
+
+services:
+  postgres:
+    image: 'postgres:16-alpine'
+    container_name: postgres
+    environment:
+      - 'POSTGRES_DB=library'
+      - 'POSTGRES_PASSWORD=lib123'
+      - 'POSTGRES_USER=admin'
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: 'redis/redis-stack'
+    container_name: redis
+    ports:
+      - '6379:6379'
+
+  library-api:
+    image: igorgmoraes/library-api:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8000"
+    environment:
+      <<: *database-variables

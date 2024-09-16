@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  error:
+    include-stacktrace: on_param
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library
+    username: admin
+    password: lib123
+  jpa:
+    hibernate:
+      ddl-auto: update
+  redis:
+    host: localhost
+    port: 6379
+  data:
+    redis:
+      repositories:
+        enabled: false
+  docker:
+    compose:
+      enabled=false:
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:secret-key}
+
