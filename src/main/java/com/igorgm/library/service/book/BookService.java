@@ -24,8 +24,7 @@ public class BookService {
 		return bookRepository.findAll(pageable);
 	}
 	
-	//TODO: fix caching	@Cacheable(value = "booksById")
-	//	@Cacheable(value = "books")
+	@Cacheable(value = "books", key = "#id")
 	public Book findById(HttpSession session, Integer id) {
 		Book book = bookRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
 		
