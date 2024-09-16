@@ -49,7 +49,7 @@ Foi implementado um sistema simples de controle de acesso baseado em roles, com 
 
 ### Fluxo de Implementação
 
-1. **Criação da API**: Foi construída uma API REST usando Spring Boot. Os endpoints principais permitem listar livros (/book), buscar por identificador (/book/{id}) buscar por gênero (/book/genre/{genre}) e autor (/book/author/{author}), e adicionar notas aos livros (/book/{id}/rate?rate={rate}) (restrito ao admin).
+1. **Criação da API**: Foi construída uma API REST usando Spring Boot. Os endpoints principais permitem listar livros (/book), buscar por identificador (/book/{id}) buscar por gênero (/book/genre/{genre}) e autor (/book/author/{author}), e adicionar notas aos livros (/book/{id}/rate?rate={rate}) (restrito ao admin), listar os livros acessados recentemente (/recent), para esse último foi usado armazenamento dos dados na sessão.
    
 2. **Banco de Dados**: A estrutura do banco de dados foi desenvolvida com PostgreSQL, aproveitando suas capacidades de modelagem relacional, principalmente devido à constância da estrutura de um livro. Cada livro está relacionado a um autor e a um gênero, permitindo consultas eficientes.
 
