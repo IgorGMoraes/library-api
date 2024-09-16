@@ -68,7 +68,7 @@ Foi implementado um sistema simples de controle de acesso baseado em roles, com 
 
 3. **Integração com API Pública**: Integração com uma API pública para obter informações adicionais sobre livros, caso o catálogo da livraria precise de mais dados.
 
-4 **Monitoramento**: Grafana e Prometheus podem ser integrados para fornecer métricas de uso da API e monitorar a performance dos serviços.
+4. **Monitoramento**: Grafana e Prometheus podem ser integrados para fornecer métricas de uso da API e monitorar a performance dos serviços.
 
 ### Desafios Encontrados
 - A escolha entre PostgreSQL e MongoDB apresentou uma reflexão sobre as necessidades atuais da aplicação versus o planejamento para crescimento futuro.
