@@ -89,3 +89,4 @@ Certifique-se de ter o **Docker** e **Docker Compose** instalados em sua máquin
 #### Observações
 
 -   A aplicação estará conectada ao banco de dados PostgreSQL, acessível internamente pela URL `jdbc:postgresql://postgres:5432/library`.
+-   Para detalhes dos enpoints basta acessar `http://localhost:8080/swagger-ui`
