@@ -53,6 +53,10 @@ Foi implementado um sistema simples de controle de acesso baseado em roles, com 
    
 2. **Banco de Dados**: A estrutura do banco de dados foi desenvolvida com PostgreSQL, aproveitando suas capacidades de modelagem relacional, principalmente devido à constância da estrutura de um livro. Cada livro está relacionado a um autor e a um gênero, permitindo consultas eficientes.
 
+3. **Segurança**: Após toda a implemetação funcional da API, foi adicionada a camada de securança com autenticaçÃo e autorização dos endpoints baseados em roles (USER e ADMIN).
+
+4. **Contenerização**: Depois de tudo implementado e testado, foi utilizada a biblioteca do Google jib para criação da imagem Docker de forma automatizada, utilizando um repoistório criado no Dockerhub (igorgmoraes/library-api) para armazenamento da imagem da api. 
+
 ---
 
 ## III. Melhorias e Considerações Finais
