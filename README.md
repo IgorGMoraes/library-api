@@ -19,7 +19,8 @@ O objetivo do projeto foi desenvolver uma API para uma livraria independente, pe
 ### Decisões de Design
 1. **Banco de Dados**: PostgreSQL foi escolhido por sua estrutura relacional estável para o esquema de livros, podendo ser escalável usando réplicas.
 2. **Cache**: Foi escolhido o Redis por ele oferecer mais funcionalidades, como persistência de dados, suporte a estruturas de dados mais complexas (considerei utilizá-lo na busca de últimos libvos acessados) e melhor escalabilidade que Memcached.
-3. **Spring Boot**: A escolha de Spring Boot se deu pela sua facilidade de integração com diferentes bibliotecas e frameworks e estrutura de camadas:
+3. **Aqiusição dos dados**: Foi utilizada a biblioteca OpenCSV para simplificar e automatizar a importação de dados em massa a partir de um arquivo CSV contendo as informações dos livros.
+4. **Spring Boot**: A escolha de Spring Boot se deu pela sua facilidade de integração com diferentes bibliotecas e frameworks e estrutura de camadas:
 -  **Entity**: Representa a estrutura dos dados do sistema. Cada classe de entidade corresponde a uma tabela no banco de dados, contendo atributos que refletem as colunas da tabela.
 
 -   **Repository**: É responsável pela interação com a base de dados. Utiliza interfaces que estendem `JpaRepository`, permitindo operações CRUD (Create, Read, Update, Delete) sem a necessidade de implementar métodos complexos.
