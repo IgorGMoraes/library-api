@@ -70,4 +70,10 @@ public class BookController {
 		return ResponseEntity.ok(bookService.addRating(id, rate));
 	}
 	
+	@GetMapping("/title/{title}")
+	public ResponseEntity<List<Book>> searchBooksByTitle(@PathVariable String title) {
+		List<Book> books = bookService.searchByTitle(title);
+		return ResponseEntity.ok(books);
+	}
+	
 }

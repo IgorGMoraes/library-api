@@ -1,9 +1,9 @@
 package com.igorgm.library.service.book;
 
 import com.igorgm.library.entity.book.BookCsv;
-import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.stereotype.Service;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -17,7 +17,7 @@ public class CsvParserService {
 		assert inputStream != null;
 		Reader reader = new InputStreamReader(inputStream);
 		
-		CsvToBean<BookCsv> csvToBean = new CsvToBeanBuilder<BookCsv>(reader)
+		var csvToBean = new CsvToBeanBuilder<BookCsv>(reader)
 				.withType(BookCsv.class)
 				.withIgnoreLeadingWhiteSpace(true)
 				.build();

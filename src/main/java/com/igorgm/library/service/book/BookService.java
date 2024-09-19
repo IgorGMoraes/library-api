@@ -1,6 +1,7 @@
 package com.igorgm.library.service.book;
 
 import com.igorgm.library.entity.book.Book;
+import com.igorgm.library.entity.book.OpenLibraryBookDTO;
 import com.igorgm.library.exception.ResourceNotFoundException;
 import com.igorgm.library.repository.book.BookRepository;
 import jakarta.servlet.http.HttpSession;
@@ -10,7 +11,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +22,7 @@ public class BookService {
 	
 	private final RecentlyViewedService recentlyViewedService;
 	private final BookRepository bookRepository;
+	private final OpenLibraryService openLibraryService;
 	
 	@Cacheable(value = "books")
 	public Page<Book> listAll(Pageable pageable) {
@@ -60,6 +65,28 @@ public class BookService {
 		book.setNumberOfRates(currentNumberOfRates + 1);
 		
 		return bookRepository.save(book);
+	}
+	
+	public List<Book> searchByTitle(String title) {
+		var books = bookRepository.findByTitleContainingIgnoreCase(title);
+		
+		if (books.isEmpty()) {
+			var openLibraryBooks = openLibraryService.searchBooksByTitle(title);
+			return openLibraryBooks.stream()
+					.map(this::mapToBook)
+					.collect(Collectors.toList());
+		}
+		
+		return books;
+	}
+	
+	private Book mapToBook(OpenLibraryBookDTO openLibraryBookDTO) {
+		return Book.builder()
+				.title(openLibraryBookDTO.getTitle())
+				.author(String.join(", ", Optional.ofNullable(openLibraryBookDTO.getAuthor_name()).orElse(Collections.emptyList())))
+				.rating(openLibraryBookDTO.getRatings_average())
+				.numberOfRates(openLibraryBookDTO.getRatings_count())
+				.build();
 	}
 	
 }

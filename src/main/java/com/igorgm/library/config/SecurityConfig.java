@@ -33,6 +33,7 @@ public class SecurityConfig {
 						.requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
 						.requestMatchers(HttpMethod.GET, "/books/**").permitAll() //.hasRole("User")
 						.requestMatchers(HttpMethod.GET, "/book").permitAll() //.hasRole("USER")
+//						.requestMatchers(HttpMethod.GET, "/book/title/{title}").permitAll() //.hasRole("USER")
 						.requestMatchers(HttpMethod.PUT, "/books/{id}/rate").permitAll() //.hasRole("ADMIN")
 						.anyRequest().authenticated()
 				)
